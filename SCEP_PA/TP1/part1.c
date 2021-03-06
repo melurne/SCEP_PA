@@ -1,6 +1,5 @@
 ﻿#include<stdio.h>
 #include<string.h>
-#define MAX_PERSONNES 100
 
 struct Date {
 	int day;
@@ -16,7 +15,7 @@ struct Date lire_date() {
 }
 
 void affich_date(struct Date *date) {
-	printf("%d/%d/%d\n", date->day, date->month, date->year);
+	printf("%2d/%2d/%4d\n", date->day, date->month, date->year);
 }
 
 int main() {
