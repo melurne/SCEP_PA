@@ -78,20 +78,20 @@ int compare_personne(struct Personne p1, struct Personne p2) {
 	return strcmp(p1.nom, p2.nom);
 }
 
-int rech_dicho(struct Annuaire annuaire, struct Personne target) {
+int rech_dicho(struct Annuaire annuaire, char target[50]) {
 	int a = 0, b = annuaire.dernier;
 	int c = (int)(a+b)/2;
-	while (b > a)
+	while (b >= a)
 	{
-		if (compare_personne(annuaire.contenu[c], target) == 0)
+		if (strcmp(annuaire.contenu[c].nom, target) == 0)
 			return c;
-		if (compare_personne(annuaire.contenu[c], target) > 0)
+		if (strcmp(annuaire.contenu[c].nom, target) < 0)
 		{
-			a = c;
+			a = c+1;
 		}
 		else
 		{
-			b = c;
+			b = c-1;
 		}
 		c = (int)(a+b)/2;
 	}
@@ -102,4 +102,5 @@ int main(int argc, char* argv[]) {
 	struct Annuaire annuaire;
 	annuaire = construire_annuaire_fichier(argv[1]);	
 	affich_annuaire(&annuaire);
+	printf("%d\n", rech_dicho(annuaire, "Zebulon"));
 }
