@@ -33,8 +33,7 @@ void affich_date(struct Date *date) {
 
 int lire_personne(struct Personne* ptr_pers) {
 	printf("nom :");
-	if (scanf("%s", &(ptr_pers->nom)) == EOF)
-		return 1;
+	scanf("%s", &(ptr_pers->nom))
 	printf("prenom: ");
 	scanf("%s", &ptr_pers->prenom);
 	printf("numero: ");
@@ -46,8 +45,6 @@ int lire_personne(struct Personne* ptr_pers) {
 }
 
 void affich_personne(struct Personne* p) {
-	char c;
-	
 	printf("%s, %s, %s, ", p->nom, p->prenom, p->numero);
 	affich_date(&p->naissance);
 	printf("\n");
