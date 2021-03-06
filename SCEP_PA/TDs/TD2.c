@@ -3,7 +3,7 @@
 #include<string.h>
 #define NBE 4
 #define NN 2
-#define MAX_ELEVES
+#define MAX_ELEVES 10
 
 struct Date {
 	int day;
@@ -12,9 +12,9 @@ struct Date {
 };
 
 struct Eleve {
-	char NIP;
-	char nom;
-	char prenom;
+	char NIP[9];
+	char nom[20];
+	char prenom[20];
 	struct Date naissance;
 	float notes[NN];	
 };
@@ -48,14 +48,14 @@ void triClasse(struct Classe *class) {
 	}while (permut == true);
 }
 
-int find_eleve(struct Classe *class, char NIP_target) {
+int find_eleve(struct Classe *class, char NIP_target[9]) {
 	int i =0;
-	while (i < class->dernier && strcmp(class->effectif[i].NIP, NIP_target)<0)
+	while (i <= class->dernier && strcmp(class->effectif[i].NIP, NIP_target)<0)
 	{
 		i++;
 	}
 
-	if (strcmp(class->effectif[i].NIP, NIP_target)==0)
+	if (i <= class->dernier)
 	{
 		return i;
 	}
@@ -63,7 +63,7 @@ int find_eleve(struct Classe *class, char NIP_target) {
 }
 
 void add_eleve(struct Classe *class, struct Eleve *eleve) {
-	if (dernier < MAX_ELEVES-1)
+	if (class->dernier < MAX_ELEVES-1)
 	{
 		class->dernier ++;
 		class->effectif[class->dernier] = *eleve;
