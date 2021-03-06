@@ -12,8 +12,8 @@ struct Date {
 };
 
 struct Eleve {
-	char nom;
-	char prenom;
+	char nom[20];
+	char prenom[20];
 	struct Date naissance;
 	float notes[NN];	
 };
@@ -36,7 +36,6 @@ void affichClasse(struct Classe *classe) {
 	for (int i = 0; i<NBE; i++)
 	{
 		eleve = classe->effectif[i];
-		printf("%d\n", eleve.notes[1]);
 		printf("%s %s %d / %d / %d %f\n",eleve.nom, eleve.prenom, eleve.naissance.day, eleve.naissance.month, eleve.naissance.year, moyenneEleve(eleve));
 	}
 }
@@ -84,7 +83,7 @@ void triClasse(struct Classe *class) {
 int main() {
 	float notes[4][2] = {{10.0, 15.0}, {14.0, 13.0}, {11.0, 11.0}, {16.0, 12.0}};
 
-	struct Eleve elv1 = {"SMITH", "John", {1, 1, 2000}, notes[0]};
+	struct Eleve elv1 = {"SMITH", "John", {1, 1, 2000}, (*notes)[0]};
 	struct Eleve elv2 = {"CUNIN", "Mathis" ,{28, 6, 2000}, (*notes)[1]};
 	struct Eleve elv3 = {"TACIAK", "Pierre", {24, 1, 2000}, (*notes)[2]};
 	struct Eleve elv4 = {"GAILLARD", "Eva", {14, 9, 2000}, (*notes)[3]};
