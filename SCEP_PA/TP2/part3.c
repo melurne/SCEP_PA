@@ -59,8 +59,6 @@ struct Annuaire construire_annuaire_fichier(char path[20]) {
 }
 
 void affich_personne(struct Personne* p) {
-	char c;
-	
 	printf("%s, %s, %s, ", p->nom, p->prenom, p->numero);
 	affich_date(&p->naissance);
 	printf("\n");
@@ -77,17 +75,17 @@ void affich_annuaire(struct Annuaire* a) {
 int rech_dicho(struct Annuaire annuaire, char target[50]) {
 	int a = 0, b = annuaire.dernier;
 	int c = (int)(a+b)/2;
-	while (b > a)
+	while (b >= a)
 	{
 		if (strcmp(annuaire.contenu[c].nom, target) == 0)
 			return c;
-		if (strcmp(annuaire.contenu[c].nom, target) > 0)
+		if (strcmp(annuaire.contenu[c].nom, target) < 0)
 		{
-			a = c;
+			a = c+1;
 		}
 		else
 		{
-			b = c;
+			b = c-1;
 		}
 		c = (int)(a+b)/2;
 	}
@@ -95,9 +93,7 @@ int rech_dicho(struct Annuaire annuaire, char target[50]) {
 }
 
 void modifier_annuaire(struct Annuaire *annuaire, char nom[50], char numero[10]) {
-	printf("modification ...");
 	strcpy(annuaire->contenu[rech_dicho(*annuaire, nom)].numero, numero);
-	printf("termine\n");
 }
 
 void ecrire_personne(struct Personne personne, FILE *f) {
@@ -116,6 +112,7 @@ void ecrire_fichier(char path[20], struct Annuaire annuaire) {
 	{
 		ecrire_personne(annuaire.contenu[i], f);
 	}
+	fclose(f);
 }
 
 int main(int argc, char* argv[]) {
