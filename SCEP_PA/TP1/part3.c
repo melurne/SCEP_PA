@@ -53,8 +53,6 @@ struct Annuaire construire_annuaire() {
 }
 
 void affich_personne(struct Personne* p) {
-	char c;
-	
 	printf("%s, %s, %s, ", p->nom, p->prenom, p->numero);
 	affich_date(&p->naissance);
 	printf("\n");
