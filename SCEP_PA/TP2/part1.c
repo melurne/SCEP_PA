@@ -78,4 +78,5 @@ int main(int argc, char* argv[]) {
 	struct Annuaire annuaire;
 	annuaire = construire_annuaire_fichier(argv[1]);	
 	affich_annuaire(&annuaire);
+	printf("%s\n", argv[2]);
 }
