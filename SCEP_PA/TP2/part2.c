@@ -32,14 +32,15 @@ void affich_date(struct Date *date) {
 }
 
 int lire_personne_fichier(struct Personne* ptr_pers, FILE *fd) {
-	if (fscanf(fd, "%s", &ptr_pers->nom) != 1)
+	if (fscanf(fd, "%s\n%s\n%d\n%d\n%d\n%s", 	&ptr_pers->nom,
+												&ptr_pers->prenom,
+												&ptr_pers->naissance.day,
+												&ptr_pers->naissance.month,
+												&ptr_pers->naissance.year,
+												&ptr_pers->numero
+												) != 6)
 		return 1;	
-	fscanf(fd, "%s", &ptr_pers->prenom);
-	fscanf(fd, "%d", &ptr_pers->naissance.day);
-	fscanf(fd, "%d", &ptr_pers->naissance.month);
-	fscanf(fd, "%d", &ptr_pers->naissance.year);
-	fscanf(fd, "%s", &ptr_pers->numero);
-	return 0;
+	else return 0;
 }
 
 struct Annuaire construire_annuaire_fichier(char path[20]) {
