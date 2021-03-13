@@ -23,7 +23,7 @@ void concatenate(Liste *L1, Liste L2) {
 }
 
 void ajout_tete(Liste *ptListe, int a) {
-	Cellule c;
+	Cellule *c = malloc(sizeof(Cellule));
 	c->valeur = a;
 	c->suivant = *ptListe;
 	*ptListe = &c;
@@ -54,7 +54,7 @@ void supprimer_tete(Liste *ptListe) {
 	*ptListe = (*ptListe)->suivant;
 }
 
-void supprimer(Liste *ptListe) {
+void supprimer(Liste *ptListe, int a) {
 	if (*ptListe == NULL) return;
 	if ((*ptListe)->valeur == a)
 	{
