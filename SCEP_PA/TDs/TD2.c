@@ -4,6 +4,8 @@
 #define NBE 4
 #define NN 2
 #define MAX_ELEVES 10
+#define MAX_STR 20
+#define NIP_LEN 8
 
 struct Date {
 	int day;
@@ -12,9 +14,9 @@ struct Date {
 };
 
 struct Eleve {
-	char NIP[9];
-	char nom[20];
-	char prenom[20];
+	char NIP[NIP_LEN];
+	char nom[MAX_STR];
+	char prenom[MAX_STR];
 	struct Date naissance;
 	float notes[NN];	
 };
@@ -48,7 +50,7 @@ void triClasse(struct Classe *class) {
 	}while (permut == true);
 }
 
-int find_eleve(struct Classe *class, char NIP_target[9]) {
+int find_eleve(struct Classe *class, char NIP_target[NIP_LEN]) {
 	int i =0;
 	while (i <= class->dernier && strcmp(class->effectif[i].NIP, NIP_target)<0)
 	{
