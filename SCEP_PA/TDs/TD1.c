@@ -3,6 +3,7 @@
 #include<string.h>
 #define NBE 4
 #define NN 2
+#define MAX_STR 20
 
 
 struct Date {
@@ -12,8 +13,8 @@ struct Date {
 };
 
 struct Eleve {
-	char nom[20];
-	char prenom[20];
+	char nom[MAX_STR];
+	char prenom[MAX_STR];
 	struct Date naissance;
 	float notes[NN];	
 };
