@@ -1,3 +1,12 @@
+"""
+definition de la structure liste chainée
+definition d'une fonction qui compare deux liste
+	return true si l1 = l2
+	return false si l1 != l2
+
+Code de Maxence NEUS
+"""
+
 #include<stdio.h>
 #include<stbool.h>
 
