@@ -20,9 +20,7 @@ typedef struct fifo {
 	Cellule *queue;
 } fifo;
 
-typedef struct file {
-	fifo file_attente[NB_PRIO];
-} file;
+typedef fifo scheduler[NB_PRIO];
 
 Processus nop() {
 	Processus proc = {0, "NOP", "root", "40"};
@@ -33,8 +31,20 @@ void ajout_queue(fifo *f, Processus proc) {
 	Cellule *c = malloc(sizeof(Cellule));
 	c->valeur = proc;
 	c->suivant = NULL;
-	f->queue->suivant = c;
-	f->queue = c;
+	if (f->tete == NULL)
+	{
+		f->tete = c;
+		f->queue = c;
+	}
+	else
+	{
+		f->queue->suivant = c;
+		f->queue = c;
+	}	
+}
+
+void ajouter(scheduler s, Processus proc, int priorite) {
+	ajout_queue(&(s[priorite]), proc);
 }
 
 Processus pop(fifo *file) {
@@ -43,7 +53,13 @@ Processus pop(fifo *file) {
 		return nop();
 	}
 	Processus p = file->tete->valeur;
+	Cellule *tete = file->tete;
 	file->tete = file->tete->suivant;
+	if (tete == file->queue)
+	{
+		file->queue = NULL;
+	}
+	free(tete);
 	return p;
 }
 

@@ -24,8 +24,8 @@ bool compare(Cellule *L1, Cellule *L2) {
 	{
 		if (L1->valeur != L2->valeur)
 			{return false;}
-		L1 = L1->valeur;
-		L2 = L2->valeur;
+		L1 = L1->suivant;
+		L2 = L2->suivant;
 		if ((L1 == NULL && L2 != NULL)||(L1 != NULL && L2 == NULL))
 			{return false;}
 	}
