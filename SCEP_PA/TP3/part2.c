@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdbool.h>
 #include<string.h>
-#include <stdlib.h>
+#include<stdlib.h>
 #define MAX_STR 20
 
 typedef struct Cellule {
@@ -69,6 +69,8 @@ void insertion_triee(Liste *ptListe, int a) {
 		ajout_tete(ptListe, a);
 		return;	
 	}
+	if (a == (*ptListe)->valeur)
+		{return;}
 	Cellule *c = malloc(sizeof(Cellule));
 	c->valeur = a;
 	c->suivant = NULL;
@@ -77,7 +79,7 @@ void insertion_triee(Liste *ptListe, int a) {
 	ptCellule p = (*ptListe)->suivant;
 	while (p != NULL && a >= p->valeur)
 	{
-		if (a == p->valeur)
+		if (a == p->valeur || a == precedent->valeur)
 			{return;}
 		precedent = p;
 		p = p->suivant;
