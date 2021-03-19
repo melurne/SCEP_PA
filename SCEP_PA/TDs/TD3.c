@@ -26,28 +26,33 @@ void ajout_tete(Liste *ptListe, int a) {
 	Cellule *c = malloc(sizeof(Cellule));
 	c->valeur = a;
 	c->suivant = *ptListe;
-	*ptListe = &c;
+	*ptListe = c;
 }
 
-void insertion(Liste *ptListe, int a) {
-	Cellule c;
-	c->valeur = a;
-	c->suivant = NULL;
+void insertion_triee(Liste *ptListe, int a) {
 	if (*ptListe == NULL)
 	{
-		ajout_tete(ptListe, a); 
+		ajout_tete(ptListe, a);
+		return; 
 	}
-	if (*ptListe->valeur > a) 
+	if ((*ptListe)->valeur > a) 
 	{
-		ajout_tete(ptListe, a);	
+		ajout_tete(ptListe, a);
+		return;	
 	}
-	ptCellule p = *ptListe;
-	while (a >= p->valeur && p->suivant != NULL)
+	Cellule *c = malloc(sizeof(Cellule));
+	c->valeur = a;
+	c->suivant = NULL;
+	
+	ptCellule precedent = *ptListe;
+	ptCellule p = (*ptListe)->suivant;
+	while (p != NULL && a >= p->valeur)
 	{
+		precedent = p;
 		p = p->suivant;
 	}
-	c->suivant = p->suivant;
-	p->suivant = &c;
+	c->suivant = p;
+	precedent->suivant = c;
 }
 
 void supprimer_tete(Liste *ptListe) {
@@ -77,10 +82,10 @@ void supprimer(Liste *ptListe, int a) {
 int main() {
 	Liste liste1;
 	Liste liste2;
-	insertion(&liste1, 2);
-	insertion(&liste1, 4);
-	insertion(&liste2, 1);
-	insertion(&liste2, 5);
+	insertion_triee(&liste1, 2);
+	insertion_triee(&liste1, 4);
+	insertion_triee(&liste2, 1);
+	insertion_triee(&liste2, 5);
 
 
 }
