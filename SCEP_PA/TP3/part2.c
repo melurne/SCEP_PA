@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdbool.h>
 #include<string.h>
+#include <stdlib.h>
 #define MAX_STR 20
 
 typedef struct Cellule {
