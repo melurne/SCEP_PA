@@ -37,37 +37,6 @@ void suprimer_tete(Liste *L) {
 	free(pt_tete);
 }
 
-void insertion_triee(Liste *ptListe, int a) {
-	if (*ptListe == NULL)
-	{
-		ajout_tete(ptListe, a);
-		return; 
-	}
-	if ((*ptListe)->valeur > a) 
-	{
-		ajout_tete(ptListe, a);
-		return;	
-	}
-	if (a == (*ptListe)->valeur[0])
-		{return;}
-	Cellule *c = malloc(sizeof(Cellule));
-	c->valeur[0] = a;
-	c->valeur[1] = 1;
-	c->suivant = NULL;
-
-	ptCellule precedent = *ptListe;
-	ptCellule p = (*ptListe)->suivant;
-	while (p != NULL && a >= p->valeur[0])
-	{
-		if (a == p->valeur[0] || a == precedent->valeur[0])
-			{return;}
-		precedent = p;
-		p = p->suivant;
-	}
-	c->suivant = p;
-	precedent->suivant = c;
-}
-
 void insert(Liste *L, int a) {
 	if (*L == NULL || (*L)->valeur[0] > a)
 	{
