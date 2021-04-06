@@ -1,0 +1,2 @@
+tp6 : tp6.c listechaines.a
+	gcc tp6.c -o tp6 -L listechaines.a

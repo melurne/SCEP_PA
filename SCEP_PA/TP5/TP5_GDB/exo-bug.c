@@ -12,7 +12,8 @@ int recherche(int* tab, int element, int nb)
     if ( tab[mid] == element ) return 1; /* found */
     if ( tab[mid] < element ) min = mid + 1; 
     else max = mid - 1;
-  }
+    
+}
   return 0; /* not found :( */
 }
 
