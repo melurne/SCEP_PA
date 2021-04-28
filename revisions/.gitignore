@@ -1,4 +1,5 @@
 *.swp
+*.xoj
 
 lib/
 bin/
